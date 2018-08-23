@@ -1,0 +1,40 @@
+{% if is_paginated %}
+    <div class="pagination">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+
+                <li {% if page_obj.number == 1 %}class="disabled"{% endif %}>
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+                    {% endif %}
+                </li>
+
+                {% for i in page_range %}
+                    <li {% if i == page_obj.number %}class="active"{% endif %}>
+                        <span><a
+                                href="?page={{ i }}">{{ i }}</a></span>
+                    </li>
+                {% endfor %}
+
+                <li {% if page_obj.number == paginator.num_pages %}class="disabled"{% endif %}>
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+                    {% endif %}
+                </li>
+                <br>
+                <li>
+                    <form>
+                        <input type="text" name="page">
+                        {#                            <input type="submit" value="go">#}
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+{% endif %}
+
+{#<form role="search" method="get" id="searchform" action="{% url 'blog:index' %}">#}
+{#    <input type="search" placeholder="请输入您需要跳转的页面" name="page">#}
+{#    <button type="submit"><span class="ion-ios-search-strong"></span></button>#}
+{#</form>#}

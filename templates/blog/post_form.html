@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{#    {% for post in object_list %}#}
+        <article class="post post-{{ post.id }}">
+            <header class="entry-header">
+                <h1 class="entry-title">{{ post.title }}</h1>
+                <div class="entry-meta">
+                    <span class="post-category"><a href="#">{{ post.category }}</a></span>
+                    <span class="post-date"><a href="#"><time class="entry-date">{{ post.modified_time }}</time></a></span>
+                    <span class="post-author"><a href="#">{{ post.author }}</a></span>
+                    <span class="comments-link"><a href="#">4 评论</a></span>
+                    <span class="views-count"><a href="#">588 阅读</a></span>
+                </div>
+            </header>
+            <div class="entry-content clearfix">
+                {{ post.content }}
+            </div>
+        </article>
+{#    {% endfor %}#}
+    <section class="comment-area" id="comment-area">
+        <hr>
+        <h3>发表评论</h3>
+        <form action="#" method="post" class="comment-form">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="id_name">名字：</label>
+                    <input type="text" id="id_name" name="name" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="id_email">邮箱：</label>
+                    <input type="email" id="id_email" name="email" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="id_url">网址：</label>
+                    <input type="text" id="id_url" name="url">
+                </div>
+                <div class="col-md-12">
+                    <label for="id_comment">评论：</label>
+                    <textarea name="comment" id="id_comment" required></textarea>
+                    <button type="submit" class="comment-btn">发表</button>
+                </div>
+            </div>    <!-- row -->
+        </form>
+        <div class="comment-list-panel">
+            <h3>评论列表，共 <span>4</span> 条评论</h3>
+            <ul class="comment-list list-unstyled">
+                <li class="comment-item">
+                    <span class="nickname">李四</span>
+                    <time class="submit-date" datetime="2012-11-09T23:15:57+00:00">2017年12月03日 14:56</time>
+                    <div class="text">
+                        同意
+                    </div>
+                </li>
+                <li class="comment-item">
+                    <span class="nickname">王五</span>
+                    <time class="submit-date" datetime="2012-11-09T23:15:57+00:00">2017年12月02日 23:56</time>
+                    <div class="text">
+                        说的对
+                    </div>
+                </li>
+                <li class="comment-item">
+                    <span class="nickname">蝙蝠侠</span>
+                    <time class="submit-date" datetime="2012-11-09T23:15:57+00:00">2017年12月01日 8:56</time>
+                    <div class="text">
+                        说的好
+                    </div>
+                </li>
+                <li class="comment-item">
+                    <span class="nickname">长江七号</span>
+                    <time class="submit-date" datetime="2012-11-09T23:15:57+00:00">2017年12月04日 12:56</time>
+                    <div class="text">
+                        说的呱呱叫
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block toc %}
+    <div class="widget widget-content">
+        <h3 class="widget-title">文章目录</h3>
+        <ul style="list-style: none">
+            <li>
+                <a href="#">瀑布式开发</a>
+            </li>
+            <li>
+                <a href="#">迭代式开发</a>
+            </li>
+            <li>
+                <a href="#">螺旋开发</a>
+            </li>
+            <li>
+                <a href="#">资源列表</a>
+            </li>
+            <li>
+                <a href="#">敏捷开发</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

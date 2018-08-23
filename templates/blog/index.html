@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    {#    object_list --->   posts.objects_list#}
+    {% for post in object_list %}
+        <article class="post post-{{ post.id }}">
+            <header class="entry-header">
+                <h1 class="entry-title">
+                    <a href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a>
+                </h1>
+                <div class="entry-meta">
+                    <span class="post-category"><a href="#">{{ post.category }}</a></span>
+                    <span class="post-date"><a href="#"><time
+                            class="entry-date">{{ post.modified_time }}</time></a></span>
+                    <span class="post-author"><a href="#">{{ post.author }}</a></span>
+                    <span class="comments-link"><a href="#">{{ post.comment_set.count }} 评论</a></span>
+                    <span class="views-count"><a href="#">{{ post.views }} 阅读</a></span>
+                </div>
+            </header>
+            <div class="entry-content clearfix">
+                <p>{{ post.excerpt }}</p>
+                <div class="read-more cl-effect-14">
+                    <a href="{% url 'blog:post_detail' post.id %}" class="more-link">继续阅读 <span
+                            class="meta-nav">→</span></a>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+
+    {#        {% if is_paginated %}#}
+    {#        <div class="pagination">#}
+    {#        <span class="step-links">#}
+    {#            {% if page_obj.has_previous %}#}
+    {#                <a href="?page={{ page_obj.previous_page_number }}">上一页</a>#}
+    {#            {% endif %}#}
+    {##}
+    {#            {% for i in page_range %}#}
+    {#                <span {% if i == page_obj.number %}style="color: red;font-size: 25px;"{% endif %}><a href="?page={{ i }}">{{ i }}</a></span>#}
+    {#            {% endfor %}#}
+    {#            {% if page_obj.has_next %}#}
+    {#                <a href="?page={{ page_obj.next_page_number }}">下一页</a>#}
+    {#            {% endif %}#}
+    {#        </span>#}
+    {#        </div>#}
+    {#        {% endif %}#}
+
+{% include 'snippet/paginator.html' %}
+
+{% endblock %}
